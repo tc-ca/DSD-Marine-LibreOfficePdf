@@ -45,8 +45,9 @@ The service is designed to run inside of a Linux container. The hosting environm
 ## Quick Start
 
 1. Clone this repository to your machine.
-2. Run `dotnet restore` followed by `dotnet build` to build the package.
-3. fixme: add steps to create image and upload to ACR.
+2. Navigate to the folder containing `Dockerfile`, ex. ``
+3. Run `az acr build -t dsd-marine-lopdf:<tag> -r <acrname> .` where `<tag>` should be replaced by a value such as a build number, and `<acrname>` is the name of an existing Azure Container Registry instance.
+4. Create Azure App Service and pull the image .
 
 ## Architecture
 
@@ -104,7 +105,7 @@ This project is a concept demonstrator. The following aspects require attention:
 ## Known Issues
 
 1. When Application Insights is turned on for the Web App, it conflicts with the installed pdftk-java package.
-2. Links to status and download endpoints have `http` scheme, while they should have `https`. This is due to Docker container configuration issues that need to be looked at. The same `Dockerfile` works fine when container image is built using docker CLI, but has this issue when it is built with ACR Tasks.
+2. Links to status and download endpoints have `http` scheme, while they should have `https`. This is due to Docker container configuration issues that need to be looked at. The same `Dockerfile` works fine when container image is built using docker CLI, but has this issue when it is built with ACR Tasks. <a href="https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0&tabs=visual-studio#port-configuration">More info</a>
 
 
  
