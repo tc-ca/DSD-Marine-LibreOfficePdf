@@ -106,6 +106,8 @@ This project is a concept demonstrator. The following aspects require attention:
 
 1. When Application Insights is turned on for the Web App, it conflicts with the installed pdftk-java package.
 2. Links to status and download endpoints have `http` scheme, while they should have `https`. This is due to Docker container configuration issues that need to be looked at. The same `Dockerfile` works fine when container image is built using docker CLI, but has this issue when it is built with ACR Tasks. <a href="https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0&tabs=visual-studio#port-configuration">More info</a>
+3. Timeouts on all conversion operations are set to 30 seconds and need to be increased to several minutes for slower operations.
+4. Sometimes conversion failures are logged as information messages instead of as Error messages. Specifically this is the case when a call to a shell command times out.
 
 
  
