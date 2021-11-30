@@ -11,6 +11,7 @@ Royalty-free PDF conversion Web API service leveraging  capabilities of popular 
     - [PDF Conversion](#pdf-conversion)
     - [Interaction between Web API and Background Services](#interaction-between-web-api-and-background-services)
   - [Status](#status)
+  - [Known Issues](#known-issues)
 
 ## Functionality
 
@@ -100,3 +101,10 @@ This project is a concept demonstrator. The following aspects require attention:
 
 3. The size of docker image containing Ubuntu and LibreOffice is quite large (1.9 GB). This is so primarily due to large space consumption by LibreOffice. The size of the image could be brought down by ~50% if a `--no-install-recommends` switch is used during LibreOffice installation. This may however have a negative impact on produced PDF quality, as fewer fonts are installed when this switch is used. The size of the docker images can and probably should be brought down drastically through a cycle of experimentation with reducing LibreOffice size and testing the PDF quality. Ubuntu itself could be replaced by a smaller base image.  
 
+## Known Issues
+
+1. When Application Insights is turned on for the Web App, it conflicts with the installed pdftk-java package.
+2. Links to status and download endpoints have `http` scheme, while they should have `https`. This is due to Docker container configuration issues that need to be looked at. The same `Dockerfile` works fine when container image is built using docker CLI, but has this issue when it is built with ACR Tasks.
+
+
+ 

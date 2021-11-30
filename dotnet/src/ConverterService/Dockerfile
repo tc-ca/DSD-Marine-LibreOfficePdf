@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM --platform=linux/amd64 ubuntu:20.04 AS base
+FROM ubuntu:20.04 AS base
 # LibreOffice and other PDF tools
 RUN apt-get update -y
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,10 +20,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/ConverterService/ConverterService.csproj", "src/ConverterService/"]
-RUN dotnet restore "src/ConverterService/ConverterService.csproj"
+COPY ["ConverterService.csproj", "ConverterService/"]
+RUN dotnet restore "ConverterService/ConverterService.csproj"
+WORKDIR "/src/ConverterService"
 COPY . .
-WORKDIR "/src/src/ConverterService"
 RUN dotnet build "ConverterService.csproj" -c Release -o /app/build
 
 FROM build AS publish
