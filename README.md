@@ -45,7 +45,7 @@ The service is designed to run inside of a Linux container. The hosting environm
 ## Quick Start
 
 1. Clone this repository to your machine.
-2. Navigate to the folder containing `Dockerfile`, ex. ``
+2. Navigate to the folder containing `Dockerfile`, ex. `.\dotnet\src\ConverterService`
 3. Run `az acr build -t dsd-marine-lopdf:<tag> -r <acrname> .` where `<tag>` should be replaced by a value such as a build number, and `<acrname>` is the name of an existing Azure Container Registry instance.
 4. Create Azure App Service and pull the image .
 
